@@ -1,0 +1,42 @@
+server:
+    port: 4445
+spring:
+    profiles:
+        active: ${ACTIVE_PROFILE:dev}
+
+---
+
+spring:
+    config:
+        activate:
+            on-profile: dev
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        url: ${DB_URL:jdbc:postgresql://localhost:5432/treinamento}
+        username: ${DB_USERNAME:postgres}
+        password: ${DB_PASSWORD:solinftec}
+        hikari:
+            connection-timeout: 30000
+            idle-timeout: 600000
+            max-lifetime: 1800000
+            minimum-idle: 1
+            maximum-pool-size: 3         
+
+---
+spring:
+    config:
+        activate:
+            on-profile: production
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        url: ${DB_URL:jdbc:postgresql://localhost:5432/treinamento}
+        username: ${DB_USERNAME:postgres}
+        password: ${DB_PASSWORD:solinftec}
+        hikari:
+            connection-timeout: 30000
+            idle-timeout: 600000
+            max-lifetime: 1800000
+            minimum-idle: 1
+            maximum-pool-size: 3         
+            pool-name: treinamento
+            connection-test-query: SELECT 1
