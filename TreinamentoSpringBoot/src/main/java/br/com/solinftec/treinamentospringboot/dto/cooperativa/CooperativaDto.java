@@ -8,15 +8,16 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetAllCooperativaDto {
+public class CooperativaDto {
 
     private Long id;
     private String nome;
     private String email;
 
-    public GetAllCooperativaDto(Cooperativa cooperativa) {
+    public CooperativaDto(Cooperativa cooperativa) {
         this.id = cooperativa.getId();
         this.nome = cooperativa.getNome();
         this.email = cooperativa.getEmail();
     }
+
 }

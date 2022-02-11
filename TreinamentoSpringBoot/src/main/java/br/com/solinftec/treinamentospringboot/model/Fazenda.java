@@ -1,25 +1,14 @@
 package br.com.solinftec.treinamentospringboot.model;
 
-import java.io.Serializable;
-import java.util.List;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
+import javax.persistence.*;
+
+@Data
 @Entity
 @Table(name = "FAZENDA")
-@Data
-public class Fazenda implements Serializable{
-
-    private static final long serialVersionUID = 1L;
+public class Fazenda {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,9 +27,9 @@ public class Fazenda implements Serializable{
     @Column(name = "LONGITUDE")
     private Float longitude;
 
-    @OneToOne
-    private Fazendeiro idFazendeiro;
+    @ManyToOne
+    @JoinColumn(name = "ID_FAZENDEIRO")
+    @JsonManagedReference
+    private Fazendeiro fazendeiro;
 
-
-    
 }
